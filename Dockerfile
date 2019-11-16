@@ -1,2 +1,2 @@
 FROM tomcat:8
-COPY target/java-web-app*.war /usr/local/tomcat/webapps/java-web-app.war
+COPY target/maven-web-application*.war /usr/local/tomcat/webapps/maven-web-application.war
