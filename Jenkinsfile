@@ -19,7 +19,7 @@ node
 	}
 	stage('Deploy In Development')
 	{
-		sh "openshiftDeploy(namespace: 'development', deploymentConfig: 'myapp')"
-	  	sh "openshiftScale(namespace: 'development', deploymentConfig: 'myapp', replicaCount: '4')"
+		openshiftDeploy(namespace: 'development', deploymentConfig: 'myapp')
+	  	openshiftScale(namespace: 'development', deploymentConfig: 'myapp', replicaCount: '4')
   	}
-} 
+}
