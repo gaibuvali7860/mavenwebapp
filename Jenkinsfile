@@ -15,7 +15,7 @@ node
   	}
 	stage('Buid In Development')
 	{
-		sh "openshiftBuild(namespace: 'development', buildConfig: 'myapp', showBuildLogs: 'true')"
+		openshiftBuild(namespace: 'development', buildConfig: 'myapp', showBuildLogs: 'true')
 	}
 	stage('Deploy In Development')
 	{
