@@ -10,10 +10,9 @@ node
 	{
 		sh "${mavenHome}/bin/mvn clean package"
 	}
-  stage('Docker Image Build')
-  {
-    sh "docker build -t chanduibm/mvnwebapp ."
-  }
+  	stage('Docker Image Build')
+  {		sh "docker build -t cpolamre/mavenwebapp ."
+  	}
 	stage('Buid In Development')
 	{
 		sh "openshiftBuild(namespace: 'development', buildConfig: 'myapp', showBuildLogs: 'true')"
@@ -21,6 +20,6 @@ node
 	stage('Deploy In Development')
 	{
 		sh "openshiftDeploy(namespace: 'development', deploymentConfig: 'myapp')"
-	  sh "openshiftScale(namespace: 'development', deploymentConfig: 'myapp', replicaCount: '4')"
-  }
+	  	sh "openshiftScale(namespace: 'development', deploymentConfig: 'myapp', replicaCount: '4')"
+  	}
 } 
