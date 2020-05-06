@@ -10,16 +10,17 @@ node
 	{
 		sh "${mavenHome}/bin/mvn clean package"
 	}
-  	stage('Docker Image Build')
-  {		sh "docker build -t cpolamre/mavenwebapp ."
-  	}
-	stage('Buid In Development')
+	stage('Code Quality report')
 	{
-		openshiftBuild(namespace: 'development', buildConfig: 'myapp', showBuildLogs: 'true')
+		sh "${mavenHome}/bin/mvn sonar:sonar"
 	}
-	stage('Deploy In Development')
+	stage('Push Artifacts to Nexus')
 	{
-		openshiftDeploy(namespace: 'development', deploymentConfig: 'myapp')
-	  	openshiftScale(namespace: 'development', deploymentConfig: 'myapp', replicaCount: '4')
+		sh "${mavenHome}/bin/mvn deploy"
+	}
+  	stage('Docker Image Build')
+  	{	
+		sh "docker build -t cpolamre/mavenwebapp ."
   	}
+	
 }
